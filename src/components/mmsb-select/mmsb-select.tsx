@@ -26,20 +26,18 @@ export class MmsbSelect {
   @Prop() is_open = false;
   @Prop() height = "250px";
 
-  protected running_animation: number;
-
   @Event({
     eventName: 'mmsb-select.select'
   }) selectItem: EventEmitter<string>;
 
   @Event({
     eventName: 'mmsb-select.unselect'
-  }) unselectItem: EventEmitter<string>
+  }) unselectItem: EventEmitter<string>;
 
   protected readonly id = Math.random();
 
   @State()
-  internal_data: { [id: string]: string };
+  internal_data: { [id: string]: string } = {};
   @State()
   search_content: string = "";
 
