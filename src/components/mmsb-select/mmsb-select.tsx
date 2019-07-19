@@ -63,11 +63,12 @@ export class MmsbSelect {
       this.selected = tmp;
     }
     else {
-      this.selected = [];
-    }
-
-    if (data.length && !this.multiple) {
-      this.selected = [data[0][0]];
+      if (data.length && !this.multiple) {
+        this.selected = [data[0][0]];
+      }
+      else {
+        this.selected = [];
+      }
     }
   }
 
