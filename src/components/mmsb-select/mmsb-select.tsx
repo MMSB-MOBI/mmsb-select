@@ -41,6 +41,11 @@ export class MmsbSelect {
   @State()
   search_content: string = "";
 
+  componentDidLoad() {
+    // Force le watch
+    this.data = [...this.data];
+  }
+
   @Watch('data')
   setInternal(data: [string, string][]) {
     const tmp = {};
