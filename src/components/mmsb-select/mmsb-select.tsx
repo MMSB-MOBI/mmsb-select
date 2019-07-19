@@ -53,7 +53,18 @@ export class MmsbSelect {
 
     this.internal_data = tmp;
 
-    this.selected = [];
+    if (this.selected.length) {
+      const tmp = [];
+      for (const id of this.selected) {
+        if (id in this.internal_data) {
+          tmp.push(id);
+        }
+      }
+      this.selected = tmp;
+    }
+    else {
+      this.selected = [];
+    }
 
     if (data.length && !this.multiple) {
       this.selected = [data[0][0]];
