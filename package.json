@@ -1,7 +1,7 @@
 {
-  "name": "mmsb-select",
+  "name": "@mmsb/mmsb-select",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "A tiny select component",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",
@@ -21,7 +21,7 @@
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "devDependencies": {
-    "@stencil/core": "^1.0.7"
+    "@stencil/core": "^1.1.7"
   },
   "license": "MIT"
 }

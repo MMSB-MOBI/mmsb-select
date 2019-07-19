@@ -13,5 +13,38 @@
 
   <mmsb-select label="Test selection"></mmsb-select>
 
+  <script>
+    setTimeout(() => {
+      const len = 23;
+
+      function generateACGT() {
+        let r = Math.random();
+
+        if (r <= 0.25) {
+          return 'A';
+        }
+        else if (r <= 0.5) {
+          return 'C';
+        }
+        else if (r <= 0.75) {
+          return 'G';
+        }
+
+        return 'T';
+      }
+
+      const strs = [];
+
+      const nb_str = 20;
+
+      for (let i = 0; i < nb_str; i++) {
+        const str = Array(len).fill(null).map(() => generateACGT()).join('');
+        strs.push([str, str]);
+      }
+
+      document.querySelector('mmsb-select').data = strs;
+    }, 1000);
+  </script>
+
 </body>
 </html>

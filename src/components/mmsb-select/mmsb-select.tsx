@@ -17,12 +17,16 @@ export class MmsbSelect {
     this.hide();
   }; 
 
+  @Element() el: HTMLElement;
+
   @Prop() data: [string, string][] = [];
   @Prop() multiple = false;
   @Prop() label = "";
   @Prop() selected: string[] = [];
   @Prop() is_open = false;
   @Prop() height = "250px";
+
+  protected running_animation: number;
 
   @Event({
     eventName: 'mmsb-select.select'
@@ -66,17 +70,23 @@ export class MmsbSelect {
 
   open() {
     this.is_open = true;
+    const root = this.el.shadowRoot.querySelector('.select-root') as HTMLElement;
     
     setTimeout(() => {
       window.addEventListener('click', this.hide_fn);
-
-
+      root.style.opacity = "1";
+      root.querySelector('input').focus();
     }, 50);
   }
 
   hide() {
-    this.is_open = false;
     window.removeEventListener('click', this.hide_fn);
+
+    const root = this.el.shadowRoot.querySelector('.select-root') as HTMLElement;
+    root.style.opacity = "0";
+    setTimeout(() => {
+      this.is_open = false;
+    }, 150)
   }
 
   refreshSearch(e: Event) {
@@ -108,24 +118,31 @@ export class MmsbSelect {
   renderSelect() {
     const elements = [];
 
-    const regex = new RegExp(this.search_content, 'i');
+    const search = escapeRegExp(this.search_content);
 
-    for (const [id, label] of this.data) {
+    const regex = new RegExp('(' + search + ')', 'i');
+
+    for (let [id, label] of this.data) {
       if (this.search_content) {
-        if (!id.match(regex) && !label.match(regex)) {
+        label = escapeHTML(label);
+
+        if (!label.match(regex)) {
           continue;
+        }
+        else {
+          label = label.replace(regex, '<span class="bright">$1</span>');
         }
       }
 
       elements.push(
         <div data-id={id} data-label={label} class={(this.selected.includes(id) ? "active" : "") + " select-item"} onClick={e => this.selectSth(e)}>
-          {label}
+          <div innerHTML={label} />
         </div>
       );
     }
 
     return (
-      <div class="select-root" style={{'max-height': this.height}}>
+      <div class="select-root" style={{'max-height': this.height, 'visibility': this.is_open ? 'visible' : 'hidden', 'pointer-events': this.is_open ? '' : 'none', opacity: '0'}}>
         <div class="input-wrapper">
           <input type="text" placeholder="Search..." onInput={e => this.refreshSearch(e)} value={this.search_content}></input>
         </div>
@@ -141,12 +158,27 @@ export class MmsbSelect {
     return (
       <div class="container" data-root-select-id={String(this.id)}>
         <div class="label-container" onClick={() => this.open()}>
-          <div class="label">
+          <div class="label ellipsis">
             &#9656; {this.selected.length ? this.selected.map(e => this.internal_data[e]).join(', ') : this.label}
           </div>
         </div>
-        { this.is_open ? this.renderSelect() : "" }
+        {this.renderSelect()}
       </div>
     ); 
   }
+}
+
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
+const escape = document.createElement('textarea');
+function escapeHTML(html: string) {
+  escape.textContent = html;
+  return escape.innerHTML;
+}
+
+function unescapeHTML(html: string) {
+  escape.innerHTML = html;
+  return escape.textContent;
 }

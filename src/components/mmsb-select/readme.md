@@ -7,11 +7,35 @@
 
 ## Properties
 
-| Property | Attribute | Description     | Type     | Default     |
-| -------- | --------- | --------------- | -------- | ----------- |
-| `first`  | `first`   | The first name  | `string` | `undefined` |
-| `last`   | `last`    | The last name   | `string` | `undefined` |
-| `middle` | `middle`  | The middle name | `string` | `undefined` |
+| Property   | Attribute  | Description | Type                 | Default   |
+| ---------- | ---------- | ----------- | -------------------- | --------- |
+| `data`     | --         |             | `[string, string][]` | `[]`      |
+| `height`   | `height`   |             | `string`             | `"250px"` |
+| `is_open`  | `is_open`  |             | `boolean`            | `false`   |
+| `label`    | `label`    |             | `string`             | `""`      |
+| `multiple` | `multiple` |             | `boolean`            | `false`   |
+| `selected` | --         |             | `string[]`           | `[]`      |
+
+
+## Events
+
+| Event                  | Description | Type                  |
+| ---------------------- | ----------- | --------------------- |
+| `mmsb-select.select`   |             | `CustomEvent<string>` |
+| `mmsb-select.unselect` |             | `CustomEvent<string>` |
+
+
+## Methods
+
+### `getSelected() => Promise<string | string[]>`
+
+
+
+#### Returns
+
+Type: `Promise<string | string[]>`
+
+
 
 
 ----------------------------------------------
