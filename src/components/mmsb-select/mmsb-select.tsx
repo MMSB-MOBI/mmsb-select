@@ -41,7 +41,7 @@ export class MmsbSelect {
   @State()
   search_content: string = "";
 
-  componentDidLoad() {
+  componentWillLoad() {
     // Force le watch
     this.data = [...this.data];
   }
