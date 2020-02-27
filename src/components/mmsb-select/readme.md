@@ -7,14 +7,16 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                 | Default   |
-| ---------- | ---------- | ----------- | -------------------- | --------- |
-| `data`     | --         |             | `[string, string][]` | `[]`      |
-| `height`   | `height`   |             | `string`             | `"250px"` |
-| `is_open`  | `is_open`  |             | `boolean`            | `false`   |
-| `label`    | `label`    |             | `string`             | `""`      |
-| `multiple` | `multiple` |             | `boolean`            | `false`   |
-| `selected` | --         |             | `string[]`           | `[]`      |
+| Property     | Attribute  | Description | Type                       | Default     |
+| ------------ | ---------- | ----------- | -------------------------- | ----------- |
+| `data`       | --         |             | `[string, string][]`       | `[]`        |
+| `height`     | `height`   |             | `string`                   | `"250px"`   |
+| `is_open`    | `is_open`  |             | `boolean`                  | `false`     |
+| `label`      | `label`    |             | `string`                   | `""`        |
+| `multiple`   | `multiple` |             | `boolean`                  | `false`     |
+| `onSelect`   | --         |             | `(select: string) => void` | `undefined` |
+| `onUnselect` | --         |             | `(select: string) => void` | `undefined` |
+| `selected`   | --         |             | `string[]`                 | `[]`        |
 
 
 ## Events

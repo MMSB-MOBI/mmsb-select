@@ -26,6 +26,9 @@ export class MmsbSelect {
   @Prop() is_open = false;
   @Prop() height = "250px";
 
+  @Prop() onSelect?: (select: string) => void;
+  @Prop() onUnselect?: (select: string) => void;
+
   @Event({
     eventName: 'mmsb-select.select'
   }) selectItem: EventEmitter<string>;
@@ -117,15 +120,24 @@ export class MmsbSelect {
         s.delete(id);
         this.selected = [...s];
         this.unselectItem.emit(id);
+        if (this.onUnselect) {
+          this.onUnselect(id);
+        }
       }
       else {
         this.selected = [...this.selected, id];
         this.selectItem.emit(id);
+        if (this.onSelect) {
+          this.onSelect(id);
+        }
       }
     }
     else {
       this.selected = [id];
       this.selectItem.emit(id);
+      if (this.onSelect) {
+        this.onSelect(id);
+      }
       this.hide();
     }
   }
