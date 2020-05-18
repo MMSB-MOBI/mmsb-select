@@ -82,6 +82,7 @@
 
 .select-item.active {
     background-color: rgba(89, 89, 255, 0.459);
+    font-weight: bold;
 }
 
 .select-item.active:hover {
