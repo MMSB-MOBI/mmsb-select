@@ -11,6 +11,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface MmsbSelect {
+    'boldOnSelected': boolean;
     'color'?: string;
     'data': [string, string][];
     'getSelected': () => Promise<string | string[]>;
@@ -39,6 +40,7 @@ declare global {
 
 declare namespace LocalJSX {
   interface MmsbSelect {
+    'boldOnSelected'?: boolean;
     'color'?: string;
     'data'?: [string, string][];
     'height'?: string;

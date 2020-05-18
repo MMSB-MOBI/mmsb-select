@@ -20,6 +20,7 @@ export class MmsbSelect {
   @Element() el: HTMLElement;
 
   @Prop() data: [string, string][] = [];
+  @Prop() boldOnSelected: boolean = false;
   @Prop() multiple = false;
   @Prop() label = "";
   @Prop() selected: string[] = [];
@@ -184,7 +185,7 @@ export class MmsbSelect {
 
   render() {
     return (
-      <div class="container" data-root-select-id={String(this.id)}>
+      <div class={"container" + (this.boldOnSelected ? ' with-bold' : '')} data-root-select-id={String(this.id)}>
         <div class="label-container" style={{'background': this.color ? this.color : "transparent"}} onClick={() => this.open()}>
           <div class="label ellipsis">
             &#9656; {this.selected.length ? this.selected.map(e => this.internal_data[e]).join(', ') : this.label}

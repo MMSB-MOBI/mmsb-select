@@ -82,6 +82,9 @@
 
 .select-item.active {
     background-color: rgba(89, 89, 255, 0.459);
+}
+
+.with-bold .select-item.active {
     font-weight: bold;
 }
 
