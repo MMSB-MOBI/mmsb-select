@@ -27,6 +27,7 @@ export class MmsbSelect {
   @Prop() is_open = false;
   @Prop() height = "250px";
   @Prop() color?: string; 
+  @Prop() noDefaultSelection: boolean = false; 
 
   @Prop() onSelect?: (select: string) => void;
   @Prop() onUnselect?: (select: string) => void;
@@ -60,7 +61,6 @@ export class MmsbSelect {
     }
 
     this.internal_data = tmp;
-
     if (this.selected.length) {
       const tmp = [];
       for (const id of this.selected) {
@@ -71,12 +71,7 @@ export class MmsbSelect {
       this.selected = tmp;
     }
     else {
-      if (data.length && !this.multiple) {
-        this.selected = [data[0][0]];
-      }
-      else {
         this.selected = [];
-      }
     }
   }
 
@@ -184,10 +179,12 @@ export class MmsbSelect {
   }
 
   render() {
+    console.log("MMSB SELECT")
+    console.log(this.boldOnSelected)
     return (
-      <div class={"container" + (this.boldOnSelected ? ' with-bold' : '')} data-root-select-id={String(this.id)}>
+      <div class="container" data-root-select-id={String(this.id)}>
         <div class="label-container" style={{'background': this.color ? this.color : "transparent"}} onClick={() => this.open()}>
-          <div class="label ellipsis">
+          <div class={"label ellipsis" + (this.boldOnSelected && this.selected.length ? " bold" : "")}>
             &#9656; {this.selected.length ? this.selected.map(e => this.internal_data[e]).join(', ') : this.label}
           </div>
         </div>

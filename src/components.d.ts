@@ -19,6 +19,7 @@ export namespace Components {
     'is_open': boolean;
     'label': string;
     'multiple': boolean;
+    'noDefaultSelection': boolean;
     'onSelect'?: (select: string) => void;
     'onUnselect'?: (select: string) => void;
     'selected': string[];
@@ -47,6 +48,7 @@ declare namespace LocalJSX {
     'is_open'?: boolean;
     'label'?: string;
     'multiple'?: boolean;
+    'noDefaultSelection'?: boolean;
     'onMmsb-select.select'?: (event: CustomEvent<string>) => void;
     'onMmsb-select.unselect'?: (event: CustomEvent<string>) => void;
     'onSelect'?: (select: string) => void;
