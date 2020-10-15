@@ -179,8 +179,6 @@ export class MmsbSelect {
   }
 
   render() {
-    console.log("MMSB SELECT")
-    console.log(this.boldOnSelected)
     return (
       <div class="container" data-root-select-id={String(this.id)}>
         <div class="label-container" style={{'background': this.color ? this.color : "transparent"}} onClick={() => this.open()}>
